@@ -1,4 +1,4 @@
-//  https://codeforces.com/problemset/problem/1668/A
+//  https://codeforces.com/contest/1668/problem/A
 
 #include <bits/stdc++.h>
 #define ll long long
