@@ -30,12 +30,13 @@ void solve()
 	int a[101];
 	cin>>n;
 	for(int i=0;i<n;i++)
-	{
+    {
 		cin>>a[i];
 		sum=sum+a[i];
 	}
 	result =sum/n;
 	cout<<result;
+    
 }
 int main()
 {
