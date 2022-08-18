@@ -1,4 +1,4 @@
-//  https://codeforces.com/problemset/problem/1526/C2
+//  https://codeforces.com/problemset/problem/370/A
 
 #include <bits/stdc++.h>
 #define ll long long
@@ -26,42 +26,51 @@
 #define N 100005
 using namespace std;
 
+int Rock(int r1, int c1, int r2, int c2)
+{
+    if (r1 == r2 || c1 == c2)
+        return 1;
+    else
+        return 2;
+}
+
+int Bishop(int r1, int c1, int r2, int c2)
+{
+    if ((r1 + c1) % 2 == (r2 + c2) % 2)
+    {
+        if (abs(r1 - r2) == abs(c1 - c2))
+            return 1;
+        else
+            return 2;
+    }
+    else
+        return 0;
+}
+
+int King(int r1, int c1, int r2, int c2)
+{
+    return max(abs(r1 - r2), abs(c1 - c2));
+}
+
 void solve()
 {
-    int size;
-    vll num;
-    ll x;
-    ll count = 0, sum = 0;
+    int a, b, x, y;
+    cin >> a >> b >> x >> y;
+    int rock, bishop, king;
 
-    cin >> size;
-
-    for (int i = 0; i < size; i++)
+    if (a == x && b == y)
     {
-        cin >> x;
-        num.pb(x);
+        cout << "0 0 0";
+        return;
     }
 
-    priority_queue<ll, vector<ll>, greater<ll>> val;
-    for (int i = 0; i < size; i++)
-    {
+    rock = Rock(a, b, x, y);
+    bishop = Bishop(a, b, x, y);
+    king = King(a, b, x, y);
 
-        sum += num[i];
-        count++;
-        val.push(num[i]);
-
-        if (sum < 0)
-        {
-            int temp = val.top();
-            sum -= temp;
-            val.pop();
-            count--;
-        }
-
-        // cout << "Sum=" << sum << nl;
-        // cout << "Count=" << count << nl;
-    }
-    cout << count << nl;
+    cout << rock << " " << bishop << " " << king;
 }
+
 int main()
 {
     ios::sync_with_stdio(0);

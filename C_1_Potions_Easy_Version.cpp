@@ -1,4 +1,4 @@
-//  https://codeforces.com/problemset/problem/1526/C2
+//  https://codeforces.com/contest/1526/problem/C1
 
 #include <bits/stdc++.h>
 #define ll long long
@@ -64,7 +64,7 @@ void solve()
 }
 int main()
 {
-    ios::sync_with_stdio(0);
+    ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 

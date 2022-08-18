@@ -1,6 +1,6 @@
 //  https://codeforces.com/problemset/problem/1709/C
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned long long
 #define ld long double
@@ -26,9 +26,64 @@
 #define N 100005
 using namespace std;
 
+bool RBS(string st)
+{
+    int count = 0;
+    for (int i = 0; i < st.size(); i++)
+    {
+        if (st[i] == '(')
+            count++;
+        else
+            count--;
+        if (count < 0)
+            return false;
+    }
+    if (count == 0)
+        return true;
+    else
+        return false;
+}
+
 void solve()
 {
-    
+    string st;
+    cin.ignore();
+    cin >> st;
+    int len = st.size();
+
+    int count = 0, what = 0;
+    for (int i = 0; i < len; i++)
+    {
+        if (st[i] == '(')
+            count--;
+        else if (st[i] == ')')
+            count++;
+        else
+            what++;
+    }
+
+    int openB, closeB;
+    openB = (what + count) / 2;
+    closeB = (what - count) / 2;
+    if (openB == 0 || closeB == 0)
+    {
+        cout << "YES" << nl;
+        return;
+    }
+    string check;
+    check = string(openB - 1, '(') + ")(" + string(closeB - 1, ')');
+
+    int j = 0;
+    for (int i = 0; i < len; i++)
+    {
+        if (st[i] == '?')
+            st[i] = check[j++];
+    }
+
+    if (RBS(st) == true)
+        cout << "NO" << nl;
+    else
+        cout << "YES" << nl;
 }
 int main()
 {
@@ -37,8 +92,9 @@ int main()
     cout.tie(0);
 
     int tc;
-    cin>>tc;
-    while(tc--){
+    cin >> tc;
+    while (tc--)
+    {
         solve();
     }
     return 0;
