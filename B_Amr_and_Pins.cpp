@@ -1,6 +1,6 @@
-//  https://codeforces.com/contest/189/problem/A
+//  https://codeforces.com/problemset/problem/507/B
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned long long
 #define ld long double
@@ -33,24 +33,13 @@ using namespace std;
 
 void solve()
 {
-    int rib;
-    cin >> rib;
-    vii piece(3);
-    for (int i = 0; i < 3; i++)
-        cin >> piece[i];
-    SORT(piece);
-    ll res;
-    if (rib % piece[0] == 0)
-    {
-        res = rib / piece[0];
-    }
-    else
-    {
-        int temp = rib - piece[1];
-        if (temp % piece[0] == 0)
-            res = 1 + temp / piece[0];
-    
-    }
+    double radius, x, y, a, b;
+    cin >> radius >> x >> y >> a >> b;
+    double check = 2 * radius;
+    int ans;
+    double diff1 = abs(x - a), diff2 = abs(y - b);
+    ans = ceil(sqrt(diff1 * diff1 + diff2 * diff2) / (2 * radius));
+    cout << ans;
 }
 int main()
 {
@@ -59,6 +48,5 @@ int main()
     cout.tie(0);
 
     solve();
-
     return 0;
 }

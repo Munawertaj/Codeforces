@@ -1,6 +1,6 @@
-//  https://codeforces.com/contest/189/problem/A
+//  https://codeforces.com/problemset/problem/1726/C
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned long long
 #define ld long double
@@ -33,24 +33,23 @@ using namespace std;
 
 void solve()
 {
-    int rib;
-    cin >> rib;
-    vii piece(3);
-    for (int i = 0; i < 3; i++)
-        cin >> piece[i];
-    SORT(piece);
-    ll res;
-    if (rib % piece[0] == 0)
+    int size;
+    cin >> size;
+    string bracket;
+    cin >> bracket;
+    int count = 0;
+    for (int i = 0; i < bracket.size() - 1; i++)
     {
-        res = rib / piece[0];
+        if (bracket[i] == '(')
+        {
+            if (bracket[i + 1] == ')')
+            {
+                count++;
+                i++;
+            }
+        }
     }
-    else
-    {
-        int temp = rib - piece[1];
-        if (temp % piece[0] == 0)
-            res = 1 + temp / piece[0];
-    
-    }
+    cout << size - count + 1 << nl;
 }
 int main()
 {
@@ -58,7 +57,9 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    solve();
-
+    int tc;
+    cin >> tc;
+    while (tc--)
+        solve();
     return 0;
 }

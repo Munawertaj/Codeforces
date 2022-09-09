@@ -59,13 +59,16 @@ void solve()
             temp = num[i];
         }
     }
+    if (count >= check)
+        value.insert(temp);
 
-    temp = *value.begin();
-    if (temp == 0)
+    if (value.size() == 0)
     {
         cout << "-1" << nl;
         return;
     }
+
+    temp = *value.begin();
     int start = temp;
     ll maximum = 0;
     count = 0;
@@ -80,9 +83,10 @@ void solve()
             {
                 maximum = count;
                 start = temp - count;
-                temp = val;
-                count = 1;
             }
+            temp = val + 1;
+            count = 1;
+            continue;
         }
         temp++;
     }

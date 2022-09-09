@@ -1,6 +1,6 @@
-//  https://codeforces.com/contest/189/problem/A
+//  https://codeforces.com/contest/1526/problem/B
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned long long
 #define ld long double
@@ -31,26 +31,19 @@
 #define N 100005
 using namespace std;
 
+vll numbers;
+
 void solve()
 {
-    int rib;
-    cin >> rib;
-    vii piece(3);
-    for (int i = 0; i < 3; i++)
-        cin >> piece[i];
-    SORT(piece);
-    ll res;
-    if (rib % piece[0] == 0)
-    {
-        res = rib / piece[0];
-    }
+    ll num;
+    cin >> num;
+
+    int temp = num / 111;
+    int rem = num % 11;
+    if (rem >= 0 && rem <= temp)
+        cout << "YES" << nl;
     else
-    {
-        int temp = rib - piece[1];
-        if (temp % piece[0] == 0)
-            res = 1 + temp / piece[0];
-    
-    }
+        cout << "NO" << nl;
 }
 int main()
 {
@@ -58,7 +51,9 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    solve();
-
+    int tc;
+    cin >> tc;
+    while (tc--)
+        solve();
     return 0;
 }
