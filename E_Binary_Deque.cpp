@@ -1,4 +1,4 @@
-//  https://codeforces.com/contest/1348/problem/A
+//  https://codeforces.com/contest/1692/problem/E
 
 #include <bits/stdc++.h>
 #define ll long long
@@ -33,15 +33,44 @@ using namespace std;
 
 void solve()
 {
-    int num;
-    cin >> num;
-    ll sum = 0;
+    int size, count1;
+    cin >> size >> count1;
+    vii num(size + 1);
+    vii index;
+    for (int i = 1; i <= size; i++)
+    {
+        cin >> num[i];
+        if (num[i] == 1)
+            index.pb(i);
+    }
+    if (index.size() < count1)
+    {
+        cout << "-1" << nl;
+        return;
+    }
 
-    for (int i = 1; i < num / 2; i++)
-        sum += (pow(2, i));
-    sum += pow(2, num);
+    if (count1 == index.size())
+    {
+        cout << "0" << nl;
+        return;
+    }
 
-    ll ans = 2 * sum + 2 - pow(2, num + 1);
+    int ans = 1e6, count, prev, after;
+    for (int i = 0; i <= index.size() - count1; i++)
+    {
+        int x = i + count1 - 1;
+        if (i - 1 >= 0)
+            prev = index[i - 1];
+        else
+            prev = 0;
+        if (x + 1 < index.size())
+            after = size - index[x + 1] + 1;
+        else
+            after = 0;
+        // cout << index[x] << "   " << prev << "      " << after << nl;
+        count = prev + after;
+        ans = min(ans, count);
+    }
     cout << ans << nl;
 }
 int main()
