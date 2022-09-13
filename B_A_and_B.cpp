@@ -40,51 +40,25 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
-vll number;
-
-void generate()
-{
-    ll sum = 0;
-    ll i = 0;
-    ll finish = 1e10;
-    while (sum < finish)
-    {
-        sum += i;
-        number.pb(sum);
-        i++;
-    }
-}
-
 void solve()
 {
     ll num1, num2;
     cin >> num1 >> num2;
-    ll ans = 0;
-    ll diff = abs(num1 - num2);
-    ll rem = diff % 2;
-    
-    while (1)
+    if (num1 > num2)
+        swap(num1, num2);
+    ll ans = 1;
+    while (num1 < num2 || (num1 - num2) % 2 != 0)
     {
-
-        int index = uppbound(number, diff);
-        ans += (index - 1);
-
-        if (number[index - 1] == diff)
-        {
-            cout << ans << nl;
-            return;
-        }
-        else
-            diff = number[index] - diff;
+        num1 += ans;
+        ans++;
     }
+    cout << ans - 1 << nl;
 }
 int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-
-    generate();
 
     int tc;
     cin >> tc;
