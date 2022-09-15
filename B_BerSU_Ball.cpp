@@ -1,6 +1,6 @@
 /*
 Date:   11 September 2022
-Problem Link:
+Problem Link:   https://codeforces.com/problemset/problem/489/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -40,70 +40,37 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
-vector<pii> pr;
-
-bool check(int size, int num)
-{
-    int x, y, i;
-    for (i = 0; i < size; i++)
-    {
-        x = pr[i].ff;
-        y = pr[i].ss;
-        if (num == x || num == y)
-            continue;
-        else
-            break;
-    }
-    if (i == size)
-        return true;
-
-    int check1 = pr[i].ff;
-    int check2 = pr[i].ss;
-    int j;
-    for (j = i; j < size; j++)
-    {
-        x = pr[j].ff;
-        y = pr[j].ss;
-        if (check1 == x || check1 == y || num == x || num == y)
-            continue;
-        else
-            break;
-    }
-    if (j == size)
-        return true;
-    for (j = i; j < size; j++)
-    {
-        x = pr[j].ff;
-        y = pr[j].ss;
-        if (check2 == x || check2 == y || num == x || num == y)
-            continue;
-        else
-            break;
-    }
-    if (j == size)
-        return true;
-    else
-        return false;
-}
-
 void solve()
 {
-    int upp, size;
-    cin >> upp >> size;
-    int x, y;
-    FOR(i, size, 1)
+    int b_num, g_num;
+    cin >> b_num;
+    vii boys(b_num);
+    FOR(i, b_num, 1)
+    cin >> boys[i];
+
+    cin >> g_num;
+    vii girls(g_num);
+    FOR(i, g_num, 1)
+    cin >> girls[i];
+
+    SORT(boys);
+    SORT(girls);
+    int i = b_num - 1, j = g_num - 1;
+    int ans = 0;
+    while (i >= 0 && j >= 0)
     {
-        cin >> x >> y;
-        pr.pb({x, y});
+        if (abs(boys[i] - girls[j]) < 2)
+        {
+            ans++;
+            i--;
+            j--;
+        }
+        else if (boys[i] > girls[j])
+            i--;
+        else
+            j--;
     }
-    x = pr[0].ff;
-    y = pr[0].ss;
-    if (check(size, x))
-        YES;
-    else if (check(size, y))
-        YES;
-    else
-        NO;
+    cout << ans << nl;
 }
 int main()
 {
