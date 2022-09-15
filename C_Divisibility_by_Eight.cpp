@@ -44,15 +44,28 @@ void solve()
 {
     string num;
     cin >> num;
-    num = "00" + num;
     int number;
     int len = num.length();
     for (int i = 0; i < len; i++)
     {
         int x = num[i] - '0';
+        number = x;
+        if (number % 8 == 0)
+        {
+            cout << "YES" << nl << number;
+            return;
+        }
         for (int j = i + 1; j < len; j++)
         {
             int y = num[j] - '0';
+
+            number = x * 10 + y;
+            if (number % 8 == 0)
+            {
+                cout << "YES" << nl << number;
+                return;
+            }
+
             for (int k = j + 1; k < len; k++)
             {
                 int z = num[k] - '0';
