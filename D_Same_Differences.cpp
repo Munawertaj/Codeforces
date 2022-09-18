@@ -35,15 +35,31 @@ void solve()
 {
     int size;
     cin >> size;
-    ll count = 0;
+    vll pos_count(size + 1, 0);
+    vll neg_count(size + 1, 0);
     vll num(size + 1);
-    for (int i = 2; i <= size; i++)
+    ll temp;
+    for (int i = 0; i < size; i++)
     {
         cin >> num[i];
-        if (num[i] == i)
-            count++;
+        int temp = num[i] - i;
+        if (temp >= 0)
+            pos_count[temp]++;
+        else
+        {
+            temp = temp * (-1);
+            neg_count[temp]++;
+        }
     }
-    cout << (count * (count - 1)) / 2 << nl;
+    ll ans = 0;
+    for (int i = 0; i <= size; i++)
+    {
+        temp = pos_count[i];
+        ans += ((temp * (temp - 1)) / 2);
+        temp = neg_count[i];
+        ans += ((temp * (temp - 1)) / 2);
+    }
+    cout << ans << nl;
 }
 int main()
 {
