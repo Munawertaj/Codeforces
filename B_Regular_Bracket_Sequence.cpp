@@ -1,6 +1,6 @@
 /*
 Date:   19 September 2022
-Problem Link:   https://codeforces.com/problemset/problem/1343/C
+Problem Link:   https://codeforces.com/problemset/problem/26/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -42,29 +42,22 @@ using namespace std;
 
 void solve()
 {
-    int size;
-    cin >> size;
-    vll num(size);
-    FOR(i, size, 1)
-    cin >> num[i];
-    ll sum = 0;
+    string st;
+    cin >> st;
+    int res = 0;
+    int count = 0, len = st.size();
 
-    ll curr, prev = num[0];
-    ll maximum = prev;
-
-    for (int i = 1; i < size; i++)
+    FOR(i, len, 1)
     {
-        curr = num[i];
-        if ((prev < 0 && curr < 0) || (prev >= 0 && curr >= 0))
-            maximum = max(maximum, num[i]);
-        else
+        if (st[i] == '(')
+            count++;
+        else if (count)
         {
-            sum += maximum;
-            prev = curr;
-            maximum = prev;
+            res += 2;
+            count--;
         }
     }
-    cout << sum + maximum << nl;
+    cout << res << nl;
 }
 int main()
 {
@@ -72,9 +65,6 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int tc;
-    cin >> tc;
-    while (tc--)
-        solve();
+    solve();
     return 0;
 }

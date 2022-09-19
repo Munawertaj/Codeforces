@@ -1,6 +1,6 @@
 /*
 Date:   19 September 2022
-Problem Link:   https://codeforces.com/problemset/problem/1343/C
+Problem Link:   https://codeforces.com/contest/451/problem/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -46,25 +46,42 @@ void solve()
     cin >> size;
     vll num(size);
     FOR(i, size, 1)
-    cin >> num[i];
-    ll sum = 0;
+    {
+        cin >> num[i];
+    }
 
-    ll curr, prev = num[0];
-    ll maximum = prev;
+    int start = 0, end = 0;
+    for (int i = 1; i < size; i++)
+    {
+        if (num[i] >= num[i - 1])
+            continue;
+        else
+        {
+            start = i - 1;
+            end = i;
+            for (int j = i + 1; j < size; j++)
+            {
+                if (num[j] > num[j - 1])
+                    break;
+                end = j;
+            }
+            break;
+        }
+    }
+    int i = start;
+    int j = end;
+    while (i < j)
+        swap(num[i++], num[j--]);
 
     for (int i = 1; i < size; i++)
     {
-        curr = num[i];
-        if ((prev < 0 && curr < 0) || (prev >= 0 && curr >= 0))
-            maximum = max(maximum, num[i]);
-        else
+        if (num[i] < num[i - 1])
         {
-            sum += maximum;
-            prev = curr;
-            maximum = prev;
+            cout << "no";
+            return;
         }
     }
-    cout << sum + maximum << nl;
+    cout << "yes" << nl << start + 1 << " " << end + 1;
 }
 int main()
 {
@@ -72,9 +89,6 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int tc;
-    cin >> tc;
-    while (tc--)
-        solve();
+    solve();
     return 0;
 }

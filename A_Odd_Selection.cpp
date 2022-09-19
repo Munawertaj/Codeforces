@@ -1,6 +1,6 @@
 /*
 Date:   19 September 2022
-Problem Link:   https://codeforces.com/problemset/problem/1343/C
+Problem Link:   https://codeforces.com/problemset/problem/1363/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -42,29 +42,38 @@ using namespace std;
 
 void solve()
 {
-    int size;
-    cin >> size;
-    vll num(size);
+    int size, count;
+    cin >> size >> count;
+    vii num(size);
+    int odd_count = 0, even_count = 0;
     FOR(i, size, 1)
-    cin >> num[i];
-    ll sum = 0;
-
-    ll curr, prev = num[0];
-    ll maximum = prev;
-
-    for (int i = 1; i < size; i++)
     {
-        curr = num[i];
-        if ((prev < 0 && curr < 0) || (prev >= 0 && curr >= 0))
-            maximum = max(maximum, num[i]);
+        cin >> num[i];
+        if (num[i] & 1)
+            odd_count++;
         else
-        {
-            sum += maximum;
-            prev = curr;
-            maximum = prev;
-        }
+            even_count++;
     }
-    cout << sum + maximum << nl;
+
+    if (odd_count == 0)
+    {
+        cout << "No" << nl;
+        return;
+    }
+
+    if (even_count == 0)
+    {
+        if (count & 1)
+            cout << "Yes" << nl;
+        else
+            cout << "No" << nl;
+        return;
+    }
+
+    if (size == count && (odd_count % 2 == 0))
+        cout << "No" << nl;
+    else
+        cout << "Yes" << nl;
 }
 int main()
 {
