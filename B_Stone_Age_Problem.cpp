@@ -1,4 +1,9 @@
-//  https://codeforces.com/problemset/problem/1679/B
+/*
+Date:   21 September 2022
+Problem Link:   https://codeforces.com/problemset/problem/1679/B
+Author: Tareq Munawer Taj
+CSE, Rajshahi University
+*/
 
 #include <bits/stdc++.h>
 #define ll long long
@@ -12,57 +17,65 @@
 #define vll vector<ll>
 #define vull vector<ull>
 #define vss vector<string>
+#define FOR(i, n, x) for (int i = 0; i < n; i = i + x)
+#define FORR(i, n, x) for (int i = n; i >= 0; i = i - x)
+#define SORT(v) sort(v.begin(), v.end())
+#define REVSORT(v) sort(v.rbegin(), v.rend())
+#define REVERSE(v) reverse(v.rbegin(), v.rend())
+#define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin()
+#define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin()
 #define matrix(x) vector<vector<x>>
-#define ff first
-#define ss second
 #define ms(a, b) memset(a, b, sizeof(a))
 #define setdigit(n) fixed << setprecision(n)
-#define PI (2 * acos(0.0))
-#define mod 1000000007
 #define MOD(a, b) (a % b + b) % b
 #define lcm(a, b) ((a) * ((b) / __gcd(a, b)))
+#define ff first
+#define ss second
+#define YES printf("YES\n")
+#define NO printf("NO\n")
+#define nl "\n"
+#define PI (acos(-1.0))
+#define mod 1000000007
 #define INF (ll)1e17
-#define nl endl
 #define N 100005
 using namespace std;
 
 void solve()
 {
-    ull size, query;
+    int size, query;
     cin >> size >> query;
-    ull num[size], sum = 0;
-    for (int i = 0; i < size; i++)
+    vll num(size + 1);
+    ull sum = 0;
+    for (int i = 1; i <= size; i++)
     {
         cin >> num[i];
         sum += num[i];
     }
-    int type;
-    ull rep1, rep2, index;
+    int type, index;
+    ll rep1, rep2;
     bool check = false;
-    int index_check[size] = {0};
+    set<int> index_check;
+
     while (query--)
     {
         cin >> type;
         if (type == 1)
         {
             cin >> index >> rep1;
-            if (check == true)
-            {
-                if (index_check[index - 1] == 0)
-                {
-                    num[index - 1] = rep2;
-                    index_check[index - 1]++;
-                }
-            }
 
-            sum = sum + rep1 - num[index - 1];
-            num[index - 1] = rep1;
+            if (check == true && index_check.count(index) == 0)
+                num[index] = rep2;
+
+            sum = sum + rep1 - num[index];
+            num[index] = rep1;
+            index_check.insert(index);
         }
         else
         {
             check = true;
             cin >> rep2;
             sum = size * rep2;
+            index_check.clear();
         }
         cout << sum << nl;
     }

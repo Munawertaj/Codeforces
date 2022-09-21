@@ -1,6 +1,6 @@
 /*
-Date:   19 September 2022
-Problem Link:   https://codeforces.com/contest/1733/problem/D1
+Date:   20 September 2022
+Problem Link:   https://codeforces.com/problemset/problem/1674/D
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -42,34 +42,31 @@ using namespace std;
 
 void solve()
 {
-    ll size, cost1, cost2;
-    cin >> size >> cost1 >> cost2;
-    string st1, st2;
-    cin >> st1 >> st2;
-    vii index;
-    for (int i = 0; i < size; i++)
+    int size;
+    cin >> size;
+    vll num(size);
+    FOR(i, size, 1)
     {
-        if (st1[i] != st2[i])
-            index.pb(i);
+        cin >> num[i];
     }
-    int len = index.size();
-    if (len & 1)
+    int start = 0;
+    ll check = 0;
+    if (size & 1)
     {
-        cout << "-1" << nl;
-        return;
+        start = 1;
+        check = num[0];
     }
-    ll ans;
-    if (len == 2)
+    for (int i = start; i < size; i += 2)
     {
-        if (index[1] - index[0] == 1)
-            ans = min(cost1, 2 * cost2);
+        if (num[i] >= check && num[i + 1] >= check)
+            check = max(num[i], num[i + 1]);
         else
-            ans = cost2;
+        {
+            cout << "NO" << nl;
+            return;
+        }
     }
-
-    else
-        ans = (len * cost2) / 2;
-    cout << ans << nl;
+    cout << "YES" << nl;
 }
 int main()
 {
