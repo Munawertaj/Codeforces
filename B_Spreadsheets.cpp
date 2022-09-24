@@ -40,16 +40,6 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
-ll str_to_num(string x)
-{
-    int j = 0;
-    ll num = 0;
-    for (int i = x.size() - 1; i >= 0; i--)
-        num += ((x[i] - '0') * pow(10, j++));
-
-    return num;
-}
-
 string num_to_str(int num)
 {
     string res;
@@ -61,11 +51,10 @@ string num_to_str(int num)
         if (rem == 0)
         {
             num--;
-            res.pb('Z');
-            num /= 26;
-            continue;
+            ch = 'Z';
         }
-        ch = 'A' + rem - 1;
+        else
+            ch = 'A' + rem - 1;
         res.pb(ch);
         num = num / 26;
     }
@@ -73,7 +62,7 @@ string num_to_str(int num)
     return res;
 }
 
-ll char_to_num(string col)
+ll str_to_num(string col)
 {
     ll res = 0;
     int power = col.size() - 1;
@@ -120,7 +109,7 @@ void solve()
         for (i = i + 1; i < st.size(); i++)
             col_s.pb(st[i]);
 
-        col = str_to_num(col_s);
+        col = stoll(col_s);
         col_s = num_to_str(col);
 
         cout << col_s << row << nl;
@@ -134,7 +123,7 @@ void solve()
             else
                 col_s.pb(st[i]);
         }
-        col = char_to_num(col_s);
+        col = str_to_num(col_s);
 
         cout << "R" << row << "C" << col << nl;
     }
