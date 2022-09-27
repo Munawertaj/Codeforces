@@ -1,5 +1,5 @@
 /*
-Date:   26 September 2022
+Date:   27 September 2022
 Problem Link:   https://codeforces.com/contest/1730/problem/C
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -44,13 +44,6 @@ void solve()
 {
     string st;
     cin >> st;
-    string temp = st;
-    SORT(temp);
-    if (temp == st)
-    {
-        cout << st << nl;
-        return;
-    }
     vii count(10, 0);
     int minimum = 10;
     for (int i = 0; i < st.size(); i++)
@@ -59,15 +52,25 @@ void solve()
         count[x]++;
         minimum = min(x, minimum);
     }
-    for (int i = 0; i < 10; i++)
+    int check = 0;
+    for (int i = 0; i < st.size(); i++)
     {
-        int print = i;
-        if (i != minimum && i != 9)
-            print++;
-        for (int j = 0; j < count[i]; j++)
-            cout << print;
+        while (!count[check])
+            check++;
+
+        char ch = check + '0';
+        if (st[i] == ch)
+            count[check]--;
+        else if (st[i] == '9')
+            count[9]--;
+        else
+        {
+            count[st[i] - '0']--;
+            st[i] += 1;
+        }
     }
-    cout << nl;
+    SORT(st);
+    cout << st << nl;
 }
 int main()
 {
