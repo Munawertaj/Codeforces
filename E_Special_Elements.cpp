@@ -45,7 +45,7 @@ void solve()
     int size;
     cin >> size;
     vii num(size);
-    int count[size + 1] = {0};
+    vii count(size + 1, 0);
     vll sum;
     ll temp = 0;
     FOR(i, size, 1)
