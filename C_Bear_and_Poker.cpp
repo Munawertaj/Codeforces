@@ -44,28 +44,34 @@ void solve()
 {
     int size;
     cin >> size;
-    vll bid(size);
     ll maximum = 1;
+    ll temp, check;
+    bool flag = true, ans = true;
     FOR(i, size, 1)
     {
-        cin >> bid[i];
-        maximum = max(maximum, bid[i]);
-    }
-    for (int i = 0; i < size; i++)
-    {
-        if (bid[i] == maximum)
-            continue;
-        else if (2 * bid[i] == maximum)
-            continue;
-        else if (3 * bid[i] == maximum || 3 * bid[i] == 2 * maximum)
-            continue;
-        else
+        cin >> temp;
+        while (1)
         {
-            cout << "No";
-            return;
+            if (temp % 2 == 0)
+                temp /= 2;
+            else if (temp % 3 == 0)
+                temp /= 3;
+            else
+                break;
         }
+        if (flag)
+        {
+            check = temp;
+            flag = false;
+        }
+        if (temp != check)
+            ans = false;
     }
-    cout << "Yes";
+
+    if (ans)
+        cout << "Yes";
+    else
+        cout << "No";
 }
 int main()
 {
