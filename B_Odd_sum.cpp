@@ -1,6 +1,6 @@
 /*
-Date:   02 October 2022
-Problem Link:   https://codeforces.com/problemset/problem/574/C
+Date:   03 October 2022
+Problem Link:   https://codeforces.com/problemset/problem/797/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -44,28 +44,33 @@ void solve()
 {
     int size;
     cin >> size;
-    ll maximum = 1, minimum = INF;
-    ll temp;
-    FOR(i, size, 1)
+    ll pos_odd = 1e7, neg_odd = 1e7;
+    ll psum = 0;
+    ll temp, ans;
+    for (int i = 0; i < size; i++)
     {
         cin >> temp;
-        while (1)
+        if (temp > 0)
         {
-            if (temp % 2 == 0)
-                temp /= 2;
-            else if (temp % 3 == 0)
-                temp /= 3;
-            else
-                break;
+            psum += temp;
+            if (temp & 1)
+                pos_odd = min(pos_odd, temp);
         }
-        maximum = max(maximum, temp);
-        minimum = min(minimum, temp);
+        else
+        {
+            temp = abs(temp);
+            if (temp & 1)
+                neg_odd = min(neg_odd, temp);
+        }
     }
 
-    if (maximum == minimum)
-        cout << "Yes";
-    else
-        cout << "No";
+    ans = psum;
+    if (!(ans & 1))
+    {
+        temp = min(pos_odd, neg_odd);
+        ans -= temp;
+    }
+    cout << ans << nl;
 }
 int main()
 {
