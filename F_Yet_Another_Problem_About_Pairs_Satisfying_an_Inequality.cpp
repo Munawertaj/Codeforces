@@ -44,16 +44,15 @@ void solve()
 {
     int size;
     cin >> size;
-    vll arr(size + 1);
     vii index;
-    ll ans = 0;
+    ll ans = 0, num;
     for (int i = 1; i <= size; i++)
     {
-        cin >> arr[i];
-        if (arr[i] < i)
+        cin >> num;
+        if (num < i)
         {
             index.pb(i);
-            ans += lowbound(index, arr[i]);
+            ans += lowbound(index, num);
         }
     }
     cout << ans << nl;
