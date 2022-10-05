@@ -1,6 +1,6 @@
 /*
 Date:   05 October 2022
-Problem Link:   https://codeforces.com/contest/1703/problem/F
+Problem Link:   https://codeforces.com/contest/1520/problem/E
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -44,17 +44,33 @@ void solve()
 {
     int size;
     cin >> size;
+    string st;
+    cin >> st;
     vii index;
-    ll ans = 0, num;
-    for (int i = 1; i <= size; i++)
+    int count = 0;
+    for (int i = 0; i < size; i++)
     {
-        cin >> num;
-        if (num < i)
+        if (st[i] == '*')
         {
             index.pb(i);
-            ans += lowbound(index, num);
+            count++;
         }
     }
+    if (count == 0)
+    {
+        cout << "0" << nl;
+        return;
+    }
+    
+    int mid = count / 2;
+    int value = index[mid] - mid;
+    ll ans = 0;
+    for (int i = 0; i < index.size(); i++)
+    {
+        ans += (abs(value - index[i]));
+        value++;
+    }
+
     cout << ans << nl;
 }
 int main()
