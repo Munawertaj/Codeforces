@@ -1,4 +1,9 @@
-//  https://codeforces.com/contest/1176/problem/C
+/*
+Date:   08 October 2022
+Problem Link:   https://codeforces.com/contest/1176/problem/C
+Author: Tareq Munawer Taj
+CSE, Rajshahi University
+*/
 
 #include <bits/stdc++.h>
 #define ll long long
@@ -12,20 +17,26 @@
 #define vll vector<ll>
 #define vull vector<ull>
 #define vss vector<string>
-#define vSort(v) sort(v.begin(), v.end())
-#define vReverseSort(v) sort(v.rbegin(), v.rend())
-#define vReverse(v) reverse(v.rbegin(), v.rend())
+#define FOR(i, n, x) for (int i = 0; i < n; i = i + x)
+#define FORR(i, n, x) for (int i = n; i >= 0; i = i - x)
+#define SORT(v) sort(v.begin(), v.end())
+#define REVSORT(v) sort(v.rbegin(), v.rend())
+#define REVERSE(v) reverse(v.rbegin(), v.rend())
+#define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin()
+#define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin()
 #define matrix(x) vector<vector<x>>
-#define ff first
-#define ss second
 #define ms(a, b) memset(a, b, sizeof(a))
 #define setdigit(n) fixed << setprecision(n)
-#define PI (2 * acos(0.0))
-#define mod 1000000007
 #define MOD(a, b) (a % b + b) % b
 #define lcm(a, b) ((a) * ((b) / __gcd(a, b)))
+#define ff first
+#define ss second
+#define YES printf("YES\n")
+#define NO printf("NO\n")
+#define nl "\n"
+#define PI (acos(-1.0))
+#define mod 1000000007
 #define INF (ll)1e17
-#define nl endl
 #define N 100005
 using namespace std;
 
@@ -33,65 +44,50 @@ void solve()
 {
     int size;
     cin >> size;
-    vll count[43];
+    vll index[43];
     int x;
-    int ct = 0;
+    int ans = 0;
     for (int i = 0; i < size; i++)
     {
         cin >> x;
-        count[x].pb(i);
+        index[x].pb(i);
     }
     int arr[6] = {4, 8, 15, 16, 23, 42};
 
-    ll max = count[arr[0]].size();
-    ll min = count[arr[0]].size();
-
-    for (int i = 1; i < 6; i++)
-    {
-        if (count[arr[i]].size() > max)
-            max = count[arr[i]].size();
-        if (count[arr[i]].size() < min)
-            min = count[arr[i]].size();
-    }
-    if (min == 0)
-    {
-        cout << size;
-        return;
-    }
-    ll fin_count = 0;
-    bool flag = false;
-    while(1)
-    {
-        vll temp;
-        for (int j = 0; j < 6; j++)
-        {
-            ll x = count[arr[j]][count[arr[j]].size() - 1];
-            temp.pb(x);
-            cout << x << "  ";
-        }
-        cout << nl;
-        int j;
-        for (j = 1; j < 6; j++)
-        {
-            if (temp[j] < temp[j - 1])
-                break;
-        }
-        for (int k = 0; k < j; k++)
-        {
-            if (count[arr[k]].size() == 1)
-                flag = true;
-            count[arr[k]].pop_back();
-        }
-        if (j < 6)
-            fin_count += j;
-        if (flag == true)
-            break;
-    }
     for (int i = 0; i < 6; i++)
+        REVERSE(index[arr[i]]);
+
+    while (1)
     {
-        fin_count += count[arr[i]].size();
+        if (index[arr[0]].size() == 0)
+        {
+            cout << size - (6 * ans);
+            return;
+        }
+        int temp = index[arr[0]].back();
+        index[arr[0]].pop_back();
+
+        for (int i = 1; i < 6; i++)
+        {
+            if (index[arr[i]].size() == 0)
+            {
+                cout << size - (6 * ans);
+                return;
+            }
+            while (index[arr[i]].back() < temp)
+            {
+                index[arr[i]].pop_back();
+                if (index[arr[i]].size() == 0)
+                {
+                    cout << size - (6 * ans);
+                    return;
+                }
+            }
+            temp = index[arr[i]].back();
+            index[arr[i]].pop_back();
+        }
+        ans++;
     }
-    cout << fin_count << nl;
 }
 int main()
 {
