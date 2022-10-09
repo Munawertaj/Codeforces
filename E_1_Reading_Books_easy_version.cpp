@@ -72,7 +72,6 @@ void solve()
 
     int al, bb, bt;
     ll ans = 0;
-    book *= 2;
 
     while (book)
     {
@@ -93,21 +92,19 @@ void solve()
                 alice.pop_back();
                 bob.pop_back();
             }
-            book -= 2;
         }
         else if (both.size() == 0)
         {
             ans += alice.back() + bob.back();
             alice.pop_back();
             bob.pop_back();
-            book -= 2;
         }
         else
         {
             ans += both.back();
             both.pop_back();
-            book -= 2;
         }
+        book--;
     }
     cout << ans;
 }
