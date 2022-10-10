@@ -1,6 +1,6 @@
 /*
 Date:   10 October 2022
-Problem Link:   https://codeforces.com/problemset/problem/125/A
+Problem Link:   https://codeforces.com/problemset/problem/805/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -42,12 +42,25 @@ using namespace std;
 
 void solve()
 {
-    int inch, feet, centimeter;
-    cin >> centimeter;
-    inch = (centimeter + 1) / 3;
-    feet = inch / 12;
-    inch = inch % 12;
-    cout << feet << " " << inch;
+    int size;
+    cin >> size;
+    int rem = size % 2;
+    size /= 2;
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        if (i & 1)
+            cout << "aa";
+        else
+            cout << "bb";
+    }
+    if (rem)
+    {
+        if (i & 1)
+            cout << "a";
+        else
+            cout << "b";
+    }
 }
 int main()
 {
