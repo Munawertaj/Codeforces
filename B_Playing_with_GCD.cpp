@@ -45,24 +45,22 @@ void solve()
     int size;
     cin >> size;
     vii a(size);
-    vii b;
 
     for (int i = 0; i < size; i++)
         cin >> a[i];
 
-    b.pb(a[0]);
-    for (int i = 1; i < size; i++)
-        b.pb(lcm(a[i], a[i - 1]));
-    b.pb(a.back());
-
-    for (int i = 0; i < size; i++)
+    int num1 = a[0], num2;
+    for (int i = 0; i < size - 1; i++)
     {
-        if (a[i] != __gcd(b[i], b[i + 1]))
+        num2 = lcm(a[i], a[i + 1]);
+        if (a[i] != __gcd(num1, num2))
         {
             cout << "NO" << nl;
             return;
         }
+        num1 = num2;
     }
+
     cout << "YES" << nl;
 }
 int main()
