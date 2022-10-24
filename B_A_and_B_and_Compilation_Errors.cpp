@@ -44,41 +44,19 @@ void solve()
 {
     int size;
     cin >> size;
-    vii num1(size), num2(size - 1), num3(size - 2);
-    for (int i = 0; i < size; i++)
-        cin >> num1[i];
-
-    for (int i = 0; i < size - 1; i++)
-        cin >> num2[i];
-
-    for (int i = 0; i < size - 2; i++)
-        cin >> num3[i];
-
-    SORT(num1);
-    SORT(num2);
-    SORT(num3);
-    int j = 0;
-    for (int i = 0; i < size; i++)
+    vll sum;
+    ll num, total = 0;
+    for (int j = 0; j < 3; j++)
     {
-        if (num1[i] != num2[j])
+        total = 0;
+        for (int i = 0; i < size - j; i++)
         {
-            cout << num1[i] << nl;
-            break;
+            cin >> num;
+            total += num;
         }
-        else
-            j++;
+        sum.pb(total);
     }
-    j = 0;
-    for (int i = 0; i < size - 1; i++)
-    {
-        if (num2[i] != num3[j])
-        {
-            cout << num2[i] << nl;
-            break;
-        }
-        else
-            j++;
-    }
+    cout << sum[0] - sum[1] << nl << sum[1] - sum[2];
 }
 int main()
 {
