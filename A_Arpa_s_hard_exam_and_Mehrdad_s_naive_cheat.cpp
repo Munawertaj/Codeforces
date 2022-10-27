@@ -1,6 +1,6 @@
 /*
-Date:   27 October 2022
-Problem Link:   https://codeforces.com/problemset/problem/1409/B
+Date:   28 October 2022
+Problem Link:   https://codeforces.com/problemset/problem/742/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -42,27 +42,20 @@ using namespace std;
 
 void solve()
 {
-    ll num1, num2, min1, min2, opearation;
-    cin >> num1 >> num2 >> min1 >> min2 >> opearation;
-    if (num2 - min2 <= opearation)
-    {
-        opearation -= (num2 - min2);
-        num2 = min2;
-    }
+    ll num;
+    cin >> num;
+    int rem = num % 4, res;
+    if(num==0)
+        res = 1;
+    else if (rem == 0)
+        res = 6;
+    else if (rem == 1)
+        res = 8;
+    else if (rem == 2)
+        res = 4;
     else
-    {
-        num2 -= opearation;
-        opearation = 0;
-    }
-
-    // cout << num2 << " " << opearation << nl;
-
-    if (num1 - min1 <= opearation)
-        num1 = min1;
-    else
-        num1 -= opearation;
-
-    cout << num1 * num2 << nl;
+        res = 2;
+    cout << res;
 }
 int main()
 {
@@ -70,9 +63,6 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int tc;
-    cin >> tc;
-    while (tc--)
-        solve();
+    solve();
     return 0;
 }
