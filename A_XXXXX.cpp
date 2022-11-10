@@ -42,25 +42,23 @@ using namespace std;
 
 void solve()
 {
-    ll size, value;
+    int size, value;
     cin >> size >> value;
     bool flag = false;
-    vll num(size);
-    ll sum = 0;
-    ll mn_index = size, mx_index = 0;
-    for (ll i = 0; i < size; i++)
+    int num, sum = 0;
+    int mn_index = size, mx_index = 0;
+    for (int i = 0; i < size; i++)
     {
-        cin >> num[i];
-
-        if (num[i] % value)
+        cin >> num;
+        if (num % value)
         {
             mn_index = min(mn_index, i);
             mx_index = max(mx_index, i);
             flag = true;
         }
-        sum += num[i];
+        sum += num;
     }
-    ll res = size;
+    int res = size;
 
     if (sum % value == 0)
     {
