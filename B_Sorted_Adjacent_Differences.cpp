@@ -1,5 +1,5 @@
 /*
-Date:   16 November 2022
+Date:   17 November 2022
 Problem Link:   https://codeforces.com/problemset/problem/1339/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
