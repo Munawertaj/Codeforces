@@ -44,33 +44,30 @@ void solve()
 {
     int row, col;
     cin >> row >> col;
-    char chess[row][col];
-    for (int i = 0; i < row; i++)
-        for (int j = 0; j < col; j++)
-            cin >> chess[i][j];
-
+    char ch;
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
         {
-            if (chess[i][j] == '.')
+            cin >> ch;
+            if (ch == '.')
             {
                 if (i % 2 == 0)
                 {
                     if (j % 2 == 0)
-                        chess[i][j] = 'B';
+                        ch = 'B';
                     else
-                        chess[i][j] = 'W';
+                        ch = 'W';
                 }
                 else
                 {
                     if (j % 2 == 0)
-                        chess[i][j] = 'W';
+                        ch = 'W';
                     else
-                        chess[i][j] = 'B';
+                        ch = 'B';
                 }
             }
-            cout << chess[i][j];
+            cout << ch;
         }
         cout << nl;
     }
