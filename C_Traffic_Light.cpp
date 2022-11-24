@@ -1,5 +1,5 @@
 /*
-Date:   23 November 2022
+Date:   24 November 2022
 Problem Link:   https://codeforces.com/contest/1744/problem/C
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -47,35 +47,28 @@ void solve()
     cin >> size >> ch;
     string st;
     cin >> st;
+    st += st;
+
     if (ch == 'g')
     {
         cout << "0" << nl;
         return;
     }
-    int f_ind, l_ind;
+
     vii g_index;
-    bool flag = true;
-    for (int i = 0; i < size; i++)
-    {
-        if (flag && st[i] == ch)
-        {
-            f_ind = i;
-            flag = false;
-        }
-        if (st[i] == ch)
-            l_ind = i;
+
+    for (int i = 0; i < st.size(); i++)
         if (st[i] == 'g')
             g_index.pb(i);
-    }
-    ll ans;
-    if (f_ind > g_index.back())
-        ans = size - f_ind + g_index[0];
-    else if (l_ind > g_index.back())
-        ans = (size - l_ind) + g_index[0];
-    else
+
+    int ans = 0;
+    for (int i = 0; i < size; i++)
     {
-        int temp = lowbound(g_index, f_ind);
-        ans = g_index[temp] - f_ind;
+        if (st[i] == ch)
+        {
+            int temp = lowbound(g_index, i);
+            ans = max(ans, g_index[temp] - i);
+        }
     }
     cout << ans << nl;
 }
