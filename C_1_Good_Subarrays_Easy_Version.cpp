@@ -1,5 +1,5 @@
 /*
-Date:   11 October 2022
+Date:   02 December 2022
 Problem Link:   https://codeforces.com/contest/1736/problem/C1
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -65,7 +65,7 @@ void solve()
             if (count > 1)
             {
                 ans += calculate(count);
-                ans -= calculate(num[i] - 1);
+                ans -= calculate(num[i]);
             }
             count = num[i] + 1;
         }
