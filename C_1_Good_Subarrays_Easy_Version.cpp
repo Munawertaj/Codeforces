@@ -20,7 +20,7 @@ CSE, Rajshahi University
 #define FOR(i, n, x) for (int i = 0; i < n; i = i + x)
 #define FORR(i, n, x) for (int i = n; i >= 0; i = i - x)
 #define SORT(v) sort(v.begin(), v.end())
-#define REVSORT(v) sort(v.rbegin(), v.rend())
+#define RSORT(v) sort(v.rbegin(), v.rend())
 #define REVERSE(v) reverse(v.rbegin(), v.rend())
 #define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin()
 #define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin()
@@ -81,7 +81,7 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int tc;
+    int tc = 1;
     cin >> tc;
     while (tc--)
         solve();
