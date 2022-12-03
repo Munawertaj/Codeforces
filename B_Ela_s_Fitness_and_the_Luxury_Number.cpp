@@ -47,14 +47,12 @@ void solve()
     ll x = sqrtl(interval1);
     ll y = sqrtl(interval2);
     ll count = 0;
-    count = (y - x - 1) * 3;
+    count = (y - x) * 3;
 
     ll i = x * x;
     while (i < interval1)
-        i += x;
-    while (i < (x + 1) * (x + 1))
     {
-        count++;
+        count--;
         i += x;
     }
 
