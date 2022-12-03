@@ -1,5 +1,5 @@
 /*
-Date:   08 October 2022
+Date:   03 December 2022
 Problem Link:   https://codeforces.com/contest/1737/problem/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -42,32 +42,29 @@ using namespace std;
 
 void solve()
 {
-    ull interval1, interval2;
+    ll interval1, interval2;
     cin >> interval1 >> interval2;
-    ull x = sqrt(interval1);
-    ull y = sqrt(interval2);
-    ull count = 0;
-   
-    if (x * x != interval1)
+    ll x = sqrtl(interval1);
+    ll y = sqrtl(interval2);
+    ll count = 0;
+    count = (y - x - 1) * 3;
+
+    ll i = x * x;
+    while (i < interval1)
+        i += x;
+    while (i < (x + 1) * (x + 1))
     {
-        ull i = x * (x + 1);
-        while (i < interval1)
-        {
-            count--;
-            i += x;
-        }
-        count += 2;
-        x++;
+        count++;
+        i += x;
     }
-    ull i = y * y;
+
+    i = y * y;
     while (i <= interval2)
     {
         count++;
         i += y;
     }
-    y--;
 
-    count += ((y - x + 1) * 3);
     cout << count << nl;
 }
 int main()
