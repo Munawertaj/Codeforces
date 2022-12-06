@@ -1,5 +1,5 @@
 /*
-Date:   05 December 2022
+Date:   06 December 2022
 Problem Link:   https://codeforces.com/problemset/problem/40/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -40,103 +40,45 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
+int axis(int x, int y)
+{
+    if (x > 0 && y > 0)
+        return 1;
+    else if (x < 0 && y > 0)
+        return 2;
+    else if (x < 0 && y < 0)
+        return 3;
+    else
+        return 4;
+}
+
 void solve()
 {
     int x, y;
     cin >> x >> y;
-    int temp;
-    if (x == 0 || y == 0)
+    int total = x * x + y * y;
+    int dist = ceil(sqrt(total));
+
+    // cout << dist << nl;
+    if (dist * dist == total)
         cout << "black";
     else
     {
-        if (x > 0)
+        int axs = axis(x, y);
+
+        if (axs & 1)
         {
-            if (x & 1)
-            {
-                if (y > 0)
-                {
-                    temp = ceil((1.0 * y) / x);
-                    if (temp & 1)
-                        cout << "white";
-                    else
-                        cout << "black";
-                }
-                else
-                {
-                    y = abs(y);
-                    temp = ceil((1.0 * y) / x);
-                    if (temp & 1)
-                        cout << "black";
-                    else
-                        cout << "white";
-                }
-            }
+            if (dist & 1)
+                cout << "black";
             else
-            {
-                if (y > 0)
-                {
-                    temp = ceil((1.0 * y) / x);
-                    if (temp & 1)
-                        cout << "black";
-                    else
-                        cout << "white";
-                }
-                else
-                {
-                    y = abs(y);
-                    temp = ceil((1.0 * y) / x);
-                    temp = y / x;
-                    if (temp & 1)
-                        cout << "white";
-                    else
-                        cout << "black";
-                }
-            }
+                cout << "white";
         }
         else
         {
-            x = abs(x);
-            if (x & 1)
-            {
-                if (y > 0)
-                {
-                    temp = ceil((1.0 * y) / x);
-                    if (temp & 1)
-                        cout << "black";
-                    else
-                        cout << "white";
-                }
-                else
-                {
-                    y = abs(y);
-                    temp = ceil((1.0 * y) / x);
-                    if (temp & 1)
-                        cout << "white";
-                    else
-                        cout << "black";
-                }
-            }
+            if (dist & 1)
+                cout << "white";
             else
-            {
-                if (y > 0)
-                {
-                    temp = ceil((1.0 * y) / x);
-                    if (temp & 1)
-                        cout << "white";
-                    else
-                        cout << "black";
-                }
-                else
-                {
-                    y = abs(y);
-                    temp = ceil((1.0 * y) / x);
-                    temp = y / x;
-                    if (temp & 1)
-                        cout << "black";
-                    else
-                        cout << "white";
-                }
-            }
+                cout << "black";
         }
     }
 }
