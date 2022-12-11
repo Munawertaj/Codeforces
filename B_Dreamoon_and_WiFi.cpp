@@ -86,26 +86,18 @@ void solve()
             cntq++;
     }
     double res = 0;
-    if (cntq == 0)
+
+    ll temp = cnt1 - cnt2;
+    for (int i = 0; i <= cntq; i++)
     {
-        if (cnt1 == cnt2)
-            res = 1;
-        else
-            res = 0;
-    }
-    else
-    {
-        ll temp = cnt1 - cnt2;
-        for (int i = 0; i <= cntq; i++)
+        if (cntq - (i * 2) == temp)
         {
-            if (cntq - (i * 2) == temp)
-            {
-                res = nCr(cntq, i);
-                break;
-            }
+            res = nCr(cntq, i);
+            break;
         }
-        res /= (pow(2, cntq));
     }
+    res /= (pow(2, cntq));
+
     cout << setdigit(12) << res;
 }
 int main()
