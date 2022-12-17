@@ -1,5 +1,5 @@
 /*
-Date:   16 December 2022
+Date:   17 December 2022
 Problem Link:   https://codeforces.com/problemset/problem/1367/C
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -46,27 +46,18 @@ void solve()
     cin >> size >> diff;
     string st;
     cin >> st;
-    int seg = 2 * diff;
-    int count = 0, ans = 0;
-    int i, j;
+    int count = 0, ans = 0, i, j, seg;
+
     for (i = 0; i < size; i++)
     {
         if (st[i] == '1')
             break;
         count++;
     }
-    if (i == size)
+    if (i == size || count > diff)
     {
         ans++;
         st[0] = '1';
-    }
-    else
-    {
-        if (count > diff)
-        {
-            ans++;
-            st[0] = '1';
-        }
     }
     count = 0;
     for (j = size - 1; j > 0; j--)
@@ -78,25 +69,28 @@ void solve()
     if (count > diff)
     {
         ans++;
-        st.back() = '1';
+        st[size - 1] = '1';
     }
-    // cout << st<<"  "<<ans << nl;
 
     count = 0;
-    for (i = 1; i < size; i++)
+    seg = 2 * diff + 1;
+
+    for (i = 0; i < size; i++)
     {
-        if (count > seg)
-        {
-            ans++;
-            count = 0;
-        }
         if (st[i] == '1')
-            count = 0;
-        else
             count++;
+        if (i >= seg - 1)
+        {
+            if (count == 0)
+            {
+                ans++;
+                st[i - diff] = '1';
+                count++;
+            }
+            if (st[i - seg + 1] == '1')
+                count--;
+        }
     }
-    if (count > diff)
-        ans++;
     cout << ans << nl;
 }
 int main()
@@ -105,7 +99,7 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int tc = 1;
+    int tc;
     cin >> tc;
     while (tc--)
         solve();
