@@ -46,15 +46,15 @@ void solve()
     int size;
     cin >> size;
     vii num(size);
-    int check = 0;
+    int maximum = 0;
     for (int i = 0; i < size; i++)
     {
         cin >> num[i];
         count[num[i]]++;
-        check = max(num[i], check);
+        maximum = max(num[i], maximum);
     }
 
-    for (int i = check - 1; i > 0; i--)
+    for (int i = maximum - 1; i > 0; i--)
     {
         if (count[i] < count[i + 1])
         {
@@ -63,10 +63,10 @@ void solve()
         }
     }
     cout << count[1] << nl;
-    vii index(check + 1, 1);
-    
+    vii occurance(maximum + 1, 1);
+
     for (int i = 0; i < size; i++)
-        cout << index[num[i]]++ << " ";
+        cout << occurance[num[i]]++ << " ";
 }
 int main()
 {
