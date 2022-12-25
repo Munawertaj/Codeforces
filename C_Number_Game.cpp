@@ -1,6 +1,6 @@
 /*
-Date:   24 December 2022
-Problem Link:   https://codeforces.com/contest/1095/problem/C
+Date:   25 December 2022
+Problem Link:   https://codeforces.com/problemset/problem/1370/C
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -40,54 +40,43 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
+bool is_prime(ll num)
+{
+    for (int i = 2; i * i <= num; i++)
+    {
+        if (num % i == 0)
+            return false;
+    }
+    return true;
+}
+
 void solve()
 {
-    ll sum, values;
-    cin >> sum >> values;
-    ll temp = sum;
-    int count = 0;
-    while (temp)
+    ll num;
+    cin >> num;
+    string pl1 = "Ashishgup", pl2 = "FastestFinger";
+    if (num == 1)
+        cout << pl2 << nl;
+    else if (num == 2 || num & 1)
+        cout << pl1 << nl;
+    else
     {
-        if (temp % 2)
-            count++;
-        temp /= 2;
-    }
+        ll temp = num;
+        while (temp % 2 == 0)
+            temp /= 2;
 
-    int minimum = count, maximum = sum;
-    // cout << maximum << nl;
-    if (values > maximum || values < minimum)
-    {
-        cout << "NO";
-        return;
-    }
-    cout << "YES" << nl;
-
-    vii power(40, 0);
-
-    power[0] = sum;
-    int j = 0;
-
-    while (maximum != values)
-    {
-        if (power[j] < 2)
+        ll x = num / temp;
+        if (temp == 1)
+            cout << pl2 << nl;
+        else if (x > 2)
+            cout << pl1 << nl;
+        else
         {
-            j++;
-            if (power[j] < 2)
-                break;
+            if (is_prime(temp))
+                cout << pl2 << nl;
             else
-                continue;
+                cout << pl1 << nl;
         }
-
-        power[j] -= 2;
-        power[j + 1]++;
-        maximum--;
-    }
-    ll x;
-    for (int i = 0; i <= j + 1; i++)
-    {
-        x = pow(2, i);
-        for (int k = 0; k < power[i]; k++)
-            cout << x << " ";
     }
 }
 int main()
@@ -97,7 +86,7 @@ int main()
     cout.tie(0);
 
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
     while (tc--)
         solve();
     return 0;
