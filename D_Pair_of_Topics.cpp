@@ -57,7 +57,7 @@ void solve()
         if (diff == 0)
             count++;
         else if (diff < 0)
-            neg_diff.pb(abs(diff));
+            neg_diff.pb(-diff);
         else
             pos_diff.pb(diff);
     }
