@@ -1,5 +1,5 @@
 /*
-Date:   25 December 2022
+Date:   26 December 2022
 Problem Link:   https://codeforces.com/problemset/problem/1324/D
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -70,7 +70,7 @@ void solve()
     res += (count * len);
 
     for (int i = 0; i < len; i++)
-        res += uppbound(neg_diff, pos_diff[i]);
+        res += lowbound(neg_diff, pos_diff[i]);
 
     cout << res;
 }
