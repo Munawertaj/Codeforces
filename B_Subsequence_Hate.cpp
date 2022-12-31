@@ -1,5 +1,5 @@
 /*
-Date:   29 December 2022
+Date:   31 December 2022
 Problem Link:   https://codeforces.com/problemset/problem/1363/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -44,39 +44,29 @@ void solve()
 {
     string st;
     cin >> st;
-    int cnt0 = 0, cnt1 = 0;
+    int len = st.size();
+    vii count1(len, 0), count0(len,0);
+    int cnt1 = 0, cnt0 = 0;
     for (int i = 0; i < st.size(); i++)
     {
-        if (st[i] == '0')
-            cnt0++;
-        else
+        if (st[i] == '1')
             cnt1++;
+        else
+            cnt0++;
+        count0[i] = cnt0;
+        count1[i] = cnt1;
     }
-    int ans = -1;
-    if (st[0] == st.back())
-        ans = min(cnt0, cnt1);
-    else
+    int ans = len, val;
+    for (int i = 0; i < len; i++)
     {
-        string temp;
-        temp.pb(st[0]);
-        for (int j = 1; j < st.size(); j++)
-        {
-            if (st[j] != temp.back())
-                temp.pb(st[j]);
-        }
-        cnt0 = cnt1 = -1;
-        for (int i = 0; i < temp.size(); i++)
-        {
-            if (temp[i] == '0')
-                cnt0++;
-            else
-                cnt1++;
-        }
-        ans = min(cnt1, cnt0);
+        // for first 0 and last 1
+        val = count1[i] + (cnt0 - count0[i]);
+        ans = min(ans, val);
+        // for first 1 and last 0
+        val = count0[i] + (cnt1 - count1[i]);
+        ans = min(ans, val);
     }
     cout << ans << nl;
-
-    // cout << max(count_0, count_1) << nl;
 }
 int main()
 {
