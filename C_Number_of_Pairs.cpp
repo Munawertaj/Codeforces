@@ -12,7 +12,7 @@ CSE, Rajshahi University
 #define pb push_back
 #define mp make_pair
 #define pii pair<int, int>
-#define pll pair<ll, ll>
+#define pll pair<ll, ll> 
 #define vii vector<int>
 #define vll vector<ll>
 #define vull vector<ull>
