@@ -1,6 +1,6 @@
 /*
-Date:   16 September 2022
-Problem Link:
+Date:   01 January 2023
+Problem Link:   https://codeforces.com/problemset/problem/1338/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -20,7 +20,7 @@ CSE, Rajshahi University
 #define FOR(i, n, x) for (int i = 0; i < n; i = i + x)
 #define FORR(i, n, x) for (int i = n; i >= 0; i = i - x)
 #define SORT(v) sort(v.begin(), v.end())
-#define REVSORT(v) sort(v.rbegin(), v.rend())
+#define RSORT(v) sort(v.rbegin(), v.rend())
 #define REVERSE(v) reverse(v.rbegin(), v.rend())
 #define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin()
 #define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin()
@@ -44,37 +44,36 @@ void solve()
 {
     int size;
     cin >> size;
-    vll num1(size), num2(size);
+    vll num(size);
     FOR(i, size, 1)
     {
-        cin >> num1[i];
-        num2[i] = num1[i];
+        cin >> num[i];
     }
-    int pw = 0;
-    ll sum = 1;
+    ll diff = 0;
     for (int i = 1; i < size; i++)
     {
-        if (num1[i] < num1[i - 1])
+        if (num[i] < num[i - 1])
         {
-            while (1)
-            {
-                pw++;
-                num1[i] += sum;
-                sum += pow(2, pw);
-                if (num1[i] >= num1[i - 1])
-                    break;   
-            }
+            diff = max(diff, num[i - 1] - num[i]);
+            num[i] = num[i - 1];
         }
     }
-    cout << pw << nl;
+    ll ans = 0;
+    while (diff)
+    {
+        ans++;
+        diff /= 2;
+    }
+    cout << ans << nl;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
 
-    int tc;
+    int tc = 1;
     cin >> tc;
     while (tc--)
         solve();
