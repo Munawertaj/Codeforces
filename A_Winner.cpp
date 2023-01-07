@@ -1,5 +1,5 @@
 /*
-Date:   06 January 2023
+Date:   07 January 2023
 Problem Link:   https://codeforces.com/contest/2/problem/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -47,6 +47,7 @@ void solve()
     vector<pair<string, int>> game(round);
     map<string, int> player;
     string res, name;
+    vector<string> winners;
     int maximum = -1, point;
     for (int i = 0; i < round; i++)
     {
@@ -68,13 +69,10 @@ void solve()
         point = x.ss;
         // cout << name << "==" << x.ss << nl;
         if (point == maximum)
-        {
-            count++;
-            res = name;
-        }
+            winners.pb(name);
     }
-    if (count == 1)
-        cout << res;
+    if (winners.size() == 1)
+        cout << winners[0];
     else
     {
         player.clear();
@@ -85,8 +83,14 @@ void solve()
             player[name] += point;
             if (player[name] >= maximum)
             {
-                cout << name;
-                return;
+                for(auto x: winners)
+                {
+                    if(x==name)
+                    {
+                        cout << name;
+                        return;
+                    }
+                }
             }
         }
     }
