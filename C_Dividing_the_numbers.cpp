@@ -45,11 +45,11 @@ void solve()
     ll num;
     cin >> num;
     ll sum = (num * (num + 1)) / 2;
-    if (half % 2)
+    if (sum % 2)
         cout << "1" << nl;
     else
         cout << "0" << nl;
-        
+
     ll half = sum / 2;
 
     vii group;
