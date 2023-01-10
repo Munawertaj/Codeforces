@@ -44,12 +44,13 @@ void solve()
 {
     ll num;
     cin >> num;
-    ll half = (num * (num + 1)) / 2;
+    ll sum = (num * (num + 1)) / 2;
     if (half % 2)
         cout << "1" << nl;
     else
         cout << "0" << nl;
-    half /= 2;
+        
+    ll half = sum / 2;
 
     vii group;
     while (half > num)
