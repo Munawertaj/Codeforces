@@ -44,36 +44,26 @@ void solve()
 {
     int size;
     cin >> size;
-    vii arr1(size), arr2(size);
-    bool flag = false;
+    vii arr1(size), arr2(size + 1);
+
     for (int i = 0; i < size; i++)
         cin >> arr1[i];
     for (int i = 0; i < size; i++)
-    {
         cin >> arr2[i];
-        if (arr2[i] < arr1[i])
-            flag = true;
-    }
-    if (flag)
-    {
-        cout << "NO" << nl;
-        return;
-    }
 
-    for (int i = 0; i < size - 1; i++)
+    arr2[size] = arr2[0];
+    for (int i = 0; i < size; i++)
     {
         if (arr1[i] == arr2[i])
             continue;
-        if (arr2[i] - arr2[i + 1] > 1)
+        if (arr2[i] - arr2[i + 1] > 1 || arr2[i] < arr1[i])
         {
             cout << "NO" << nl;
             return;
         }
     }
-    if (arr1[size - 1] != arr2[size - 1] && arr2[size - 1] - arr2[0] > 1)
-        cout << "NO" << nl;
-    else
-        cout << "YES" << nl;
+
+    cout << "YES" << nl;
 }
 int main()
 {
