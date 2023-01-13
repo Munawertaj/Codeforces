@@ -16,7 +16,6 @@ CSE, Rajshahi University
 #define vii vector<int>
 #define vll vector<ll>
 #define vull vector<ull>
-#define vss vector<string>
 #define FOR(i, n, x) for (int i = 0; i < n; i = i + x)
 #define FORR(i, n, x) for (int i = n; i >= 0; i = i - x)
 #define SORT(v) sort(v.begin(), v.end())
