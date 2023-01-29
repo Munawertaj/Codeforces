@@ -1,6 +1,6 @@
 /*
-Date:   29 January 2023
-Problem Link:   https://codeforces.com/problemset/problem/1409/B
+Date:   28 January 2023
+Problem Link:   https://codeforces.com/problemset/problem/1735/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -40,31 +40,24 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
-ll calculate(ll num1, ll num2, ll min1, ll min2, ll operation)
-{
-    num1 -= operation;
-    operation = 0;
-    if (num1 < min1)
-    {
-        operation = min1 - num1;
-        num1 = min1;
-    }
-    num2 -= operation;
-    if (num2 < min2)
-        num2 = min2;
-    ll ans = num1 * num2;
-
-    return ans;
-}
-
 void solve()
 {
-    ll num1, num2, min1, min2, operation;
-    cin >> num1 >> num2 >> min1 >> min2 >> operation;
-    ll res1, res2;
-    res1 = calculate(num1, num2, min1, min2, operation);
-    res2 = calculate(num2, num1, min2, min1, operation);
-    cout << min(res1, res2) << nl;
+
+    ll size;
+    cin >> size;
+    vii pieces(size);
+    for (int i = 0; i < size; i++)
+        cin >> pieces[i];
+
+    int val = pieces[0] * 2 - 1;
+    int ans = 0;
+    for (int i = 0; i < size; i++)
+    {
+        ans += (pieces[i] / val);
+        if (pieces[i] % val == 0)
+            ans--;
+    }
+    cout << ans << nl;
 }
 int main()
 {
