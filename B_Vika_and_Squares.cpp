@@ -57,18 +57,18 @@ void solve()
         }
     }
     ll ans = (minimum * size);
-    ll val = (size - index - 1), maximum=0;
+    ll val = (size - index - 1), difference=0;
     for (int i = 0; i <= index; i++)
     {
         if (num[i] == minimum)
         {
-            maximum = max(val, maximum);
+            difference = max(val, difference);
             val = 0;
         }
         else
             val++;
     }
-    cout << ans + maximum;
+    cout << ans + difference;
 }
 int main()
 {
