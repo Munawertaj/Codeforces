@@ -55,7 +55,7 @@ void solve()
 
     for (int i = 1; i < 6; i++)
     {
-        if (relation[i].size() > 2 || relation[i].size() < 2)
+        if (relation[i].size() != 2)
         {
             cout << "WIN";
             return;
