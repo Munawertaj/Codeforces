@@ -46,20 +46,17 @@ void solve()
     cin >> size;
     string st1, st2;
     cin >> st1 >> st2;
-    vii index;
+    ll res = 0;
     for (int i = 0; i < size; i++)
     {
         if (st1[i] != st2[i])
-            index.pb(i);
+        {
+            if (i + 1 < size && st1[i + 1] != st2[i + 1] && st1[i] != st1[i + 1])
+                i++;
+            res++;
+        }
     }
-    index.pb(N);
-    ll res = 0;
-    for (int i = 0; i < index.size() - 1; i++)
-    {
-        if (index[i + 1] - index[i] == 1 && (st1[index[i]] != st1[index[i + 1]]))
-            i++;
-        res++;
-    }
+
     cout << res;
 }
 int main()
