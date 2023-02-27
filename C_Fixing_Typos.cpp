@@ -24,11 +24,6 @@ CSE, Rajshahi University
 #define REVERSE(v) reverse(v.rbegin(), v.rend())
 #define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin()
 #define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin()
-#define matrix(x) vector<vector<x>>
-#define ms(a, b) memset(a, b, sizeof(a))
-#define setdigit(n) fixed << setprecision(n)
-#define MOD(a, b) (a % b + b) % b
-#define lcm(a, b) ((a) * ((b) / __gcd(a, b)))
 #define ff first
 #define ss second
 #define YES printf("YES\n")
