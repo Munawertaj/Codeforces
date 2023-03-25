@@ -42,20 +42,21 @@ using namespace std;
 
 void solve()
 {
-    int size, value, rem;
+    ll size, num, value, rem;
     cin >> size >> value;
-    vii num(size), diff;
-    ll ans = 0;
+    vii diff;
+    ll ans = 0, extra = 0;
     for (int i = 0; i < size; i++)
     {
-        cin >> num[i];
-        ans += (num[i] / 10);
-        rem = num[i] % 10;
+        cin >> num;
+        ans += (num / 10);
+        rem = num % 10;
         if (rem)
         {
             diff.pb(10 - rem);
-            num[i] += (10 - rem);
+            num += (10 - rem);
         }
+        extra += (100 - num);
     }
     SORT(diff);
     for (int i = 0; i < diff.size(); i++)
@@ -72,24 +73,7 @@ void solve()
         }
     }
     if (value)
-    {
-        SORT(num);
-        int rem;
-        for (int i = 0; i < size; i++)
-        {
-            rem = 100 - num[i];
-            if (value < rem)
-            {
-                ans += (value / 10);
-                break;
-            }
-            else
-            {
-                ans += (rem / 10);
-                value -= rem;
-            }
-        }
-    }
+        ans += (min(value, extra) / 10);
     cout << ans;
 }
 int main()
