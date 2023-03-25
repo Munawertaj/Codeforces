@@ -42,24 +42,24 @@ using namespace std;
 
 void solve()
 {
-    int size, value;
+    int size, value, rem;
     cin >> size >> value;
-    vii num(size), diff(size);
+    vii num(size), diff;
     ll ans = 0;
     for (int i = 0; i < size; i++)
     {
         cin >> num[i];
         ans += (num[i] / 10);
-        diff[i] = 10 - num[i] % 10;
-        if (num[i] == 100)
-            diff[i] = 0;
-        num[i] += diff[i];
+        rem = num[i] % 10;
+        if (rem)
+        {
+            diff.pb(10 - rem);
+            num[i] += (10 - rem);
+        }
     }
     SORT(diff);
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < diff.size(); i++)
     {
-        if (diff[i] == 0)
-            continue;
         if (value >= diff[i])
         {
             ans++;
