@@ -1,6 +1,6 @@
 /*
-Date:   04 March 2023
-Problem Link:
+Date:   30 March 2023
+Problem Link:   https://codeforces.com/problemset/problem/108/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -47,6 +47,27 @@ void solve()
     vii num(size);
     for (int i = 0; i < size; i++)
         cin >> num[i];
+    SORT(num);
+    // cout<<num[size - 2]<<"  "<<num[size - 1];
+    int x, i, j;
+    for (i = 0; i < size - 1; i++)
+    {
+        x = num[i];
+        for (j = i + 1; j < size; j++)
+        {
+            if (x != num[j])
+            {
+                if (2 * x > num[j])
+                {
+                    cout << "YES";
+                    return;
+                }
+                break;
+            }
+        }
+        i = j - 1;
+    }
+    cout << "NO";
 }
 int main()
 {
