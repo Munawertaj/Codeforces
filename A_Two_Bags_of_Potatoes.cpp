@@ -45,10 +45,7 @@ void solve()
     ll num, sum, divisor;
     cin >> num >> divisor >> sum;
 
-    ll temp = ceil((num * 1.0) / divisor), mul;
-    mul = temp * divisor;
-    if (mul == num)
-        mul += divisor;
+    ll mul = (num / divisor) * divisor + divisor;
 
     if (mul > sum)
         cout << "-1";
