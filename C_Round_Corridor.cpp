@@ -1,6 +1,6 @@
 /*
 Date:   07 April 2023
-Problem Link:
+Problem Link:   https://codeforces.com/problemset/problem/1200/C
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
@@ -44,6 +44,32 @@ void solve()
 {
     ll upp, down, query;
     cin >> down >> upp >> query;
+
+    ll group = __gcd(down, upp);
+    ll val1 = down / group, val2 = upp / group;
+
+    ll x1, y1, x2, y2;
+    ll section1, section2;
+    while (query--)
+    {
+        cin >> x1 >> y1 >> x2 >> y2;
+        y1--;
+        y2--;
+        if (x1 == 1)
+            section1 = y1 / val1;
+        else
+            section1 = y1 / val2;
+
+        if (x2 == 1)
+            section2 = y2 / val1;
+        else
+            section2 = y2 / val2;
+
+        if (section1 == section2)
+            cout << "YES" << nl;
+        else
+            cout << "NO" << nl;
+    }
 }
 int main()
 {
