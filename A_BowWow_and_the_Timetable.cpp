@@ -1,5 +1,5 @@
 /*
-Date:   11 April 2023
+Date:   12 April 2023
 Problem Link:   https://codeforces.com/problemset/problem/1204/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -42,16 +42,17 @@ using namespace std;
 
 void solve()
 {
-    string binaryNumber;
-    cin >> binaryNumber;
-    int ans = binaryNumber.size() / 2;
-    for (int i = 1; binaryNumber[i]; i++)
-    {
-        if (binaryNumber[i] == '1')
-        {
-            ans = ceil(binaryNumber.size() / 2.0);
-        }
-    }
+    string st;
+    cin >> st;
+    int count = 0;
+    int len = st.size();
+    for (int i = 0; i < len; i++)
+        if (st[i] == '1')
+            count++;
+
+    int ans = ceil((len * 1.0) / 2);
+    if (count < 2 && len & 1)
+        ans--;
     cout << ans;
 }
 int main()
