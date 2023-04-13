@@ -1,5 +1,5 @@
 /*
-Date:   02 April 2023
+Date:   14 April 2023
 Problem Link:   https://codeforces.com/problemset/problem/1068/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -46,9 +46,12 @@ void solve()
     cin >> diff >> friends >> size >> _new;
 
     ll gifts = size + _new;
-    ll ans = ceil((gifts * 1.0) / friends);
-    
-    if (ans * friends <= diff)
+
+    ll ans = gifts / friends;
+    if (ans * friends != gifts)
+        ans++;
+
+    if (ans * friends <= diff && diff - size >= _new)
         cout << ans;
     else
         cout << "-1";
