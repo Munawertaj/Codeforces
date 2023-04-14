@@ -52,49 +52,13 @@ void solve()
         sum += match[i];
     }
     ll average = sum / box;
-    ll j = 0, dist, extra, req;
-    ll ans = 0;
-    for (int i = 0; i < box; i++)
+
+    ll ans = 0, extra;
+    for (int i = 0; i < box - 1; i++)
     {
-        if (match[i] >= average)
-        {
-            extra = match[i] - average;
-            match[i] = average;
-            ans += extra;
-            match[i + 1] += extra;
-            continue;
-        }
-        else
-        {
-            while (j < box)
-            {
-                if (match[j] <= average)
-                {
-                    j++;
-                    continue;
-                }
-                else
-                {
-                    req = average - match[i];
-                    extra = match[j] - average;
-                    dist = j - i;
-                    if (extra >= req)
-                    {
-                        ans += (dist * req);
-                        match[j] -= req;
-                        match[i] = average;
-                        break;
-                    }
-                    else
-                    {
-                        ans += (dist * extra);
-                        match[j] = average;
-                        match[i] += extra;
-                        j++;
-                    }
-                }
-            }
-        }
+        extra = average - match[i];
+        match[i + 1] -= extra;
+        ans += abs(extra);
     }
     cout << ans;
 }
