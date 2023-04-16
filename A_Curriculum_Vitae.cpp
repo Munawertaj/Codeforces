@@ -1,5 +1,5 @@
 /*
-Date:   21 March 2023
+Date:   16 April 2023
 Problem Link:   https://codeforces.com/problemset/problem/846/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -42,43 +42,27 @@ using namespace std;
 
 void solve()
 {
-    int size;
+    ll size;
     cin >> size;
-    vii num(size);
-    for (int i = 0; i < size; i++)
-        cin >> num[i];
-    int i = 0, j = size, ans = size;
-    int count_0 = 0, count_1 = 0, count = 0;
-    while (i < j)
+    vii num(size + 1), count_0(size + 1), count_1(size + 1);
+    ll one = 0, zero = 0, ans = 0, val;
+    for (int i = 1; i <= size; i++)
     {
-        if (num[i] == 1)
-            count_1++;
+        cin >> num[i];
+        if (num[i])
+            one++;
         else
-        {
-            while (i < j)
-            {
-                if (num[i] == 0)
-                    count_0++;
-                else
-                    break;
-                i++;
-            }
+            zero++;
 
-            if (count_1 >= count_0)
-            {
-                ans -= count_0;
-                count += count_0;
-            }
-            else
-            {
-                ans -= count_1;
-                ans += count;
-                count = 0;
-                count_1 = 1;
-            }
-            count_0 = 0;
-        }
-        i++;
+        count_0[i] = zero;
+        count_1[i] = one;
+    }
+
+    ans = max(zero, one);
+    for (int i = 1; i <= size; i++)
+    {
+        val = count_0[i] + one - count_1[i - 1];
+        ans = max(ans, val);
     }
     cout << ans;
 }
