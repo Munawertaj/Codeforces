@@ -53,13 +53,13 @@ void solve()
 
     int i, j, k;
     set<int> colums;
-    
+
     for (i = 0; i < col; i++)
     {
+        if (colums.count(i))
+            continue;
         for (j = 1; j < row; j++)
         {
-            if (colums.count(i))
-                continue;
             if (table[j][i] < table[j - 1][i])
             {
                 for (k = 0; k < col; k++)
