@@ -50,13 +50,12 @@ void solve()
         for (int j = 0; j < col; j++)
             cin >> table[i][j];
     }
-    int i, j, k, l;
 
+    int i, j, k;
     set<int> colums;
-    char ch;
+    
     for (i = 0; i < col; i++)
     {
-        ch = 'a';
         for (j = 1; j < row; j++)
         {
             if (colums.count(i))
