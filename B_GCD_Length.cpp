@@ -54,6 +54,7 @@ void solve()
         st1.pb('0');
         st2.pb('0');
     }
+
     cout << st1 << " " << st2 << nl;
 }
 int main()
