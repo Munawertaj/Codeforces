@@ -1,6 +1,6 @@
 /*
 Date:   22 May 2023
-Problem Link:
+Problem Link:   https://codeforces.com/problemset/problem/1165/A
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
 */
