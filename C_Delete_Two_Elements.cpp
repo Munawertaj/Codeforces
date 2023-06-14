@@ -53,20 +53,12 @@ void solve()
     vll num(size);
     ll sum = 0;
     mpll count;
-    bool flag = true;
+
     for (int i = 0; i < size; i++)
     {
         cin >> num[i];
         count[num[i]]++;
         sum += num[i];
-        if (num[i] != num[0])
-            flag = false;
-    }
-    if (flag)
-    {
-        ll ans = ((size) * (size - 1)) / 2;
-        cout << ans << nl;
-        return;
     }
 
     if ((2 * sum) % size)
@@ -75,17 +67,21 @@ void solve()
     {
         ll val, ans = 0;
         ll total = (2 * sum) / size;
-        for (int i = 0; i < size; i++)
+        for (auto x : count)
         {
-            val = total - num[i];
+            val = total - x.ff;
+            if (2 * val < total)
+                break;
 
-            if (num[i] == val)
-                ans += (count[val] - 1);
-
+            if (x.ff == val)
+            {
+                ll x = count[val];
+                ans += ((x * (x - 1)) / 2);
+            }
             else if (count[val] > 0)
-                ans += count[val];
+                ans += (x.ss * count[val]);
         }
-        cout << ans / 2 << nl;
+        cout << ans << nl;
     }
 }
 int main()
