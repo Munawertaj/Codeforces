@@ -1,5 +1,5 @@
 /*
-Date:   10 April 2023
+Date:   21 June 2023
 Problem Link:   https://codeforces.com/problemset/problem/846/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
@@ -40,7 +40,7 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
-int calculate(ll minutes, ll task, ll sub, vii &time)
+int without_full(ll minutes, ll task, ll sub, vii &time)
 {
     ll temp;
     int count = 0, i = 0;
@@ -77,6 +77,17 @@ void solve()
 
     SORT(time);
 
+    ll ans = 0;
+    ll full_com, rem;
+    for (int full = 0; full <= task; full++)
+    {
+        if (total * full > minutes)
+            break;
+        full_com = full * (subtask + 1);
+        rem = without_full(minutes - (total * full), task - full, subtask, time);
+        ans = max(ans, full_com + rem);
+    }
+    cout << ans;
 }
 int main()
 {
