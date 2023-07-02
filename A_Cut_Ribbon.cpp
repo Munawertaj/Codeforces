@@ -1,10 +1,16 @@
-//  https://codeforces.com/contest/189/problem/A
+/*
+Date:   02 July 2023
+Problem Link:   https://codeforces.com/contest/189/problem/A
+Author: Tareq Munawer Taj
+CSE, Rajshahi University
+*/
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned long long
 #define ld long double
 #define pb push_back
+#define pp pop_back
 #define mp make_pair
 #define pii pair<int, int>
 #define pll pair<ll, ll>
@@ -12,45 +18,52 @@
 #define vll vector<ll>
 #define vull vector<ull>
 #define vss vector<string>
+#define vpii vector<pii>
+#define vpll vector<pll>
+#define mpii map<int, int>
+#define mpll map<ll, ll>
+#define mpci map<char, int>
+#define mpsi map<string, int>
+#define FOR(i, n, x) for (int i = 0; i < n; i = i + x)
+#define FORR(i, n, x) for (int i = n; i >= 0; i = i - x)
 #define SORT(v) sort(v.begin(), v.end())
-#define REVSORT(v) sort(v.rbegin(), v.rend())
+#define RSORT(v) sort(v.rbegin(), v.rend())
 #define REVERSE(v) reverse(v.rbegin(), v.rend())
-#define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin() + 1
-#define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin() + 1
+#define lowbound(name, val) lower_bound(name.begin(), name.end(), val) - name.begin()
+#define uppbound(name, val) upper_bound(name.begin(), name.end(), val) - name.begin()
 #define matrix(x) vector<vector<x>>
-#define ff first
-#define ss second
-#define ms(a, b) memset(a, b, sizeof(a))
 #define setdigit(n) fixed << setprecision(n)
-#define PI (2 * acos(0.0))
-#define mod 1000000007
 #define MOD(a, b) (a % b + b) % b
 #define lcm(a, b) ((a) * ((b) / __gcd(a, b)))
+#define ff first
+#define ss second
+#define YES printf("YES\n")
+#define NO printf("NO\n")
+#define nl "\n"
+#define PI (acos(-1.0))
+#define mod 1000000007
 #define INF (ll)1e17
-#define nl endl
 #define N 100005
 using namespace std;
 
 void solve()
 {
-    int rib;
-    cin >> rib;
-    vii piece(3);
-    for (int i = 0; i < 3; i++)
-        cin >> piece[i];
-    SORT(piece);
-    ll res;
-    if (rib % piece[0] == 0)
+    int total, piece1, piece2, piece3;
+    cin >> total >> piece1 >> piece2 >> piece3;
+
+    int ans = 0, temp;
+    for (int i = 0; i <= 4000; i++)
     {
-        res = rib / piece[0];
+        for (int j = 0; j <= 4000; j++)
+        {
+            temp = total - (i * piece1) - (j * piece2);
+            if (temp < 0)
+                break;
+            if (temp % piece3 == 0)
+                ans = max(ans, i + j + temp / piece3);
+        }
     }
-    else
-    {
-        int temp = rib - piece[1];
-        if (temp % piece[0] == 0)
-            res = 1 + temp / piece[0];
-    
-    }
+    cout << ans << nl;
 }
 int main()
 {
@@ -58,7 +71,9 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    solve();
-
+    int tc = 1;
+    // cin>>tc;
+    while (tc--)
+        solve();
     return 0;
 }
