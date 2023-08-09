@@ -37,12 +37,27 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
+bool check(vii &need, vii &have, int magic, ll val)
+{
+
+    for (int i = 0; i < need.size(); i++)
+    {
+        if (have[i] >= val * need[i])
+            continue;
+        else if (magic + have[i] >= val * need[i])
+            magic -= (val * need[i] - have[i]);
+        else
+            return false;
+    }
+    return true;
+}
+
 void solve()
 {
     int size, magic;
     cin >> size >> magic;
 
-    vector<int> need(size), have(size);
+    vii need(size), have(size);
     for (int i = 0; i < size; i++)
         cin >> need[i];
 
@@ -53,31 +68,17 @@ void solve()
         ans = min(have[i] / need[i], ans);
     }
 
-    for (int i = 0; i < size; i++)
-        have[i] -= need[i] * ans;
-    
-    while (magic > 0)
+    int low = ans, high = INT_MAX, mid;
+    while (low <= high)
     {
-        bool flag = false;
-        for (int i = 0; i < size; i++)
+        mid = low + (high - low) / 2;
+        if (check(need, have, magic, mid))
         {
-            if (have[i] >= need[i])
-                have[i] -= need[i];
-            
-            else if (magic + have[i] >= need[i])
-            {
-                magic -= (need[i] - have[i]);
-                have[i] = 0;
-            }
-            else
-                break;
-            if (i == size - 1)
-                flag = true;
+            ans = max(mid, ans);
+            low = mid + 1;
         }
-        if (flag)
-            ans++;
         else
-            break;
+            high = mid - 1;
     }
     cout << ans;
 }
