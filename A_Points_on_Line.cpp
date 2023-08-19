@@ -55,9 +55,8 @@ void solve()
     ll ans = 0;
     for (int i = 0; i < size - 2; i++)
     {
-        index = uppbound(num, num[i] + diff);
-        if (index - i > 2)
-            ans += nC2(index - i - 1);
+        index = uppbound(num, num[i] + diff) - 1;
+        ans += nC2(index - i);
     }
     cout << ans;
 }
