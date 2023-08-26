@@ -1,5 +1,5 @@
 /*
-Date:   24 August 2023
+Date:   25 August 2023
 Problem Link:   https://codeforces.com/contest/1474/problem/B
 Author: Tareq Munawer Taj
 CSE, Rajshahi University
