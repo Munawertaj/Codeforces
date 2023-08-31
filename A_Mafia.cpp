@@ -37,17 +37,17 @@ CSE, Rajshahi University
 #define N 100005
 using namespace std;
 
-bool isValid(ll val, vii &num)
-{
-    ll sum = 0;
-    for (ll x : num)
-    {
-        sum += val - x;
-        if (sum >= val)
-            return true;
-    }
-    return false;
-}
+// bool isValid(ll val, vii &num)
+// {
+//     ll sum = 0;
+//     for (ll x : num)
+//     {
+//         sum += val - x;
+//         if (sum >= val)
+//             return true;
+//     }
+//     return false;
+// }
 
 void solve()
 {
@@ -62,11 +62,13 @@ void solve()
         sum += num[i];
         maximum = max(maximum, num[i]);
     }
-    ll low = maximum, high = sum, mid;
+
+    ll low = maximum, high = sum, mid, val;
     while (low < high)
     {
         mid = low + (high - low) / 2;
-        if (isValid(mid, num))
+        val = ceil((sum * 1.0) / (size - 1));
+        if (val <= mid)
             high = mid;
         else
             low = mid + 1;
